@@ -55,11 +55,11 @@ const Categories = ({ categories }) => {
     }
   };
   return (
-    <div className="relative overflow-hidden max-w-5xl bg-white rounded-lg p-5 mx-auto">
+    <div className="relative overflow-hidden max-w-[78rem] bg-white rounded-lg p-5 left-0 mr-auto">
       {showLeftIcon && (
         <div className="absolute top-0 left-0 h-full flex items-center bg-gradient-to-r from-white via-white to-transparent">
           <button
-            className="w-12 h-12 flex items-center justify-center ml-3 hover:bg-gray-200 rounded-full"
+            className="w-12 h-12 flex items-center justify-center ml-3 hover:bg-gray-200 rounded-full mr-16"
             onClick={() => scroll("left")}
           >
             <FontAwesomeIcon icon={faAngleLeft} size="lg" />
@@ -79,7 +79,7 @@ const Categories = ({ categories }) => {
             key={tab}
             className={`cursor-pointer whitespace-nowrap px-5 py-2 rounded-full border ${
               activeTab === tab
-                ? "bg-blue-600 text-white border-transparent"
+                ? "bg-red-600 text-white border-transparent"
                 : "bg-gray-100 border-gray-300 hover:bg-gray-200"
             }`}
             onClick={() => setActiveTab(tab)}
@@ -91,7 +91,7 @@ const Categories = ({ categories }) => {
       {showRightIcon && (
         <div className="absolute top-0 right-0 h-full flex items-center bg-gradient-to-l from-white via-white to-transparent">
           <button
-            className="w-12 h-12 flex items-center justify-center mr-3 hover:bg-gray-200 rounded-full"
+            className="w-12 h-12 flex items-center justify-center mr-3 hover:bg-gray-200 rounded-full ml-16"
             onClick={() => scroll("right")}
           >
             <FontAwesomeIcon icon={faAngleRight} size="lg" />

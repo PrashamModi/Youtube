@@ -9,7 +9,7 @@ import {
 
 const Header = () => {
   return (
-    <div className="grid grid-flow-col p-5 m-2 shadow-lg">
+    <div className="grid grid-flow-col p-5 m-1 shadow-lg h-20 content-center">
       <div className="flex items-center col-span-1">
         <Hamburger />
         <img
@@ -39,7 +39,7 @@ const Header = () => {
             src={MIC_IMAGE}
             alt="mic"
           />
-          <span className="absolute left-1/2 transform -translate-x-1/2 mt-4 p-2 text-sm w-40  bg-gray-800 text-white rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="absolute left-1/2 transform -translate-x-1/2 mt-4 p-2 text-sm w-40 z-10  bg-gray-800 text-white rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             Search with your voice
           </span>
         </div>

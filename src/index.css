@@ -45,6 +45,77 @@
 
 /* Hide scrollbar for IE, Edge, and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Like */
+/* From Uiverse.io by catraco */
+/* Hide the default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+.container input:checked ~ .like {
+  animation: kfs-fill-like 0.5s forwards;
+}
+
+.container .like {
+  fill: none;
+  stroke: rgb(0, 0, 0);
+}
+
+.container input:checked ~ .celebrate {
+  display: block;
+}
+
+.container .celebrate {
+  position: absolute;
+  animation: kfs-celebrate 1s;
+  animation-fill-mode: forwards;
+  display: none;
+  stroke: rgba(41, 41, 255, 0.934);
+}
+
+@keyframes kfs-celebrate {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0;
+    display: none;
+  }
+}
+
+@keyframes kfs-fill-like {
+  50% {
+    fill: #3fa2f6;
+    stroke: #3fa2f6;
+    transform: scale(1.2);
+  }
+
+  100% {
+    fill: #3fa2f6;
+    stroke: #3fa2f6;
+  }
 }
