@@ -9,7 +9,6 @@ const VideoContainer = () => {
     const data = await fetch(YOUTUBE_MOST_POPULAR_API);
     const json = await data.json();
     setVideos(json.items);
-    console.log(json);
   };
   useEffect(() => {
     getData();
@@ -21,9 +20,8 @@ const VideoContainer = () => {
   return (
     <div className="ml-2 flex flex-wrap">
       {videos.map((video) => (
-        <Link to={"/watch?v=" + video.id}>
-          {console.log(video)}
-          <VideoCard item={video} key={video.id} />
+        <Link to={"/watch?v=" + video.id} key={video.id}>
+          <VideoCard item={video} />
         </Link>
       ))}
     </div>

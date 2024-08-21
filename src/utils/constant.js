@@ -3,7 +3,7 @@ export const YOUTUBE_LOGO_IMG =
 export const MIC_IMAGE =
   "https://cdn-icons-png.flaticon.com/512/1082/1082810.png";
 export const NOTIFICATION_ICON =
-  "https://static-00.iconduck.com/assets.00/notification-icon-1842x2048-xr57og4y.png";
+  "https://cdn-icons-png.flaticon.com/512/3119/3119338.png";
 export const USER_PNG =
   "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
 
@@ -33,3 +33,6 @@ export const YOUTUBE_CATEGORY_LIST = [
 export const YOUTUBE_MOST_POPULAR_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=100&regionCode=IN&key=${YOUTUBE_API_KEY}`;
 
 export const YOUTUBE_COMMENT_API = `https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&maxResults=50&key=${YOUTUBE_API_KEY}&textFormat=plainText`;
+
+export const YOUTUBE_SEARCH_SUGGESTION =
+  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";

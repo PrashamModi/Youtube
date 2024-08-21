@@ -10,7 +10,6 @@ const CommentsContainer = ({ id }) => {
       `https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${id}&key=${YOUTUBE_API_KEY}`
     );
     const json = await data.json();
-    console.log(json);
 
     setComments(json.items);
   };

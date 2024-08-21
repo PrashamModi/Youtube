@@ -15,7 +15,7 @@ const WatchPage = () => {
     // eslint-disable-next-line
   }, []);
   return (
-    <div className="flex mt-5">
+    <div className="flex mt-5 w-3/4">
       <div className="ml-20">
         <WatchVideo id={searchParams.get("v")} />
         <CommentsContainer id={searchParams.get("v")} />

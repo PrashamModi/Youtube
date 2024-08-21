@@ -4,7 +4,7 @@ import Like from "./Like";
 
 const CommentCard = ({ commentInfo }) => {
   return (
-    <div className="flex m-2 p-2 mb-3 shadow-lg rounded-2xl">
+    <div className="flex m-2 p-2 mb-3 shadow-lg rounded-2xl h-2/5 mt-8">
       <div>
         <img
           className="rounded-full cursor-pointer"

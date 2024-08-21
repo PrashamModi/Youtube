@@ -8,7 +8,12 @@ import MainContainer from "./components/MainContainer";
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <Body />,
+    element: (
+      <>
+        <Header />
+        <Body />
+      </>
+    ),
     children: [
       {
         path: "/",
@@ -25,7 +30,6 @@ const appRouter = createBrowserRouter([
 function App() {
   return (
     <div>
-      <Header />
       <RouterProvider router={appRouter} />
     </div>
   );
