@@ -34,10 +34,11 @@ const VideoCard = ({ item }) => {
             {item?.snippet?.channelTitle}
           </h1>
         </div>
-        <div className="flex mt-1 ml-12">
-          <h3 className="inline font-serif mr-4">
+        <div className="flex mt-1 ml-12 items-center">
+          <h3 className="inline font-serif">
             {formatCount(item?.statistics?.viewCount)} views
           </h3>
+          <span className="mx-2">•</span>
           <h4>{timeAgo(item?.snippet?.publishedAt)}</h4>
         </div>
       </div>

@@ -7,14 +7,16 @@ import {
   USER_PNG,
   YOUTUBE_SEARCH_SUGGESTION,
 } from "../utils/constant";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "../utils/searchSlice";
+import SuggestionCard from "./SuggestionCard";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const navigate = useNavigate();
   const dispath = useDispatch();
 
   const searchCache = useSelector((store) => store.search);
@@ -31,6 +33,12 @@ const Header = () => {
       })
     );
   };
+  const handleSearchClick = async (e) => {
+    e.preventDefault();
+    setSearchText(searchText);
+    navigate("/search", { state: { info: searchText } });
+  };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (searchCache[searchText]) {
@@ -45,7 +53,7 @@ const Header = () => {
     };
   }, [searchText]);
   return (
-    <div className="grid grid-flow-col p-5 m-1 shadow-lg h-20 content-center sticky top-0 z-30 bg-slate-50">
+    <div className="grid grid-flow-col p-5 m-1 shadow-lg h-16 content-center sticky top-0 z-30 bg-slate-50">
       {/* This is the left portion */}
       <div className="flex items-center col-span-1">
         <Hamburger />
@@ -75,7 +83,10 @@ const Header = () => {
               setShowSuggestions(false);
             }}
           />
-          <button className="p-3 w-14 border rounded-r-3xl bg-slate-400">
+          <button
+            className="p-3 w-14 border rounded-r-3xl bg-slate-400"
+            onClick={handleSearchClick}
+          >
             🔍
           </button>
           <div className="relative group ml-5">
@@ -93,13 +104,10 @@ const Header = () => {
         {showSuggestions && suggestions.length > 0 && (
           <div className="border rounded-lg py-2 border-gray-100 fixed z-10 bg-white ml-32 w-[33.4rem] my-1 shadow-lg">
             <ul>
-              {suggestions.map((suggestion) => (
-                <li
-                  key={suggestion}
-                  className="py-2 px-4 shadow-sm hover:bg-gray-200"
-                >
-                  🔍 {suggestion}
-                </li>
+              {suggestions.map((suggestion, index) => (
+                <Link to={"search"}>
+                  <SuggestionCard suggestion={suggestion} key={index} />
+                </Link>
               ))}
             </ul>
           </div>

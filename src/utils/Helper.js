@@ -1,3 +1,5 @@
+import { nameList, quotes } from "./constant";
+
 export const formatCount = (count) => {
   if (count >= 1000000) {
     return (count / 1000000).toFixed(1) + "M";
@@ -27,4 +29,12 @@ export const timeAgo = (dateString) => {
   if (minutes > 0)
     return minutes === 1 ? "1 minute ago" : `${minutes} minutes ago`;
   return seconds === 1 ? "1 second ago" : `${seconds} seconds ago`;
+};
+
+export const generateRandomNames = () => {
+  return nameList[Math.floor(Math.random() * nameList.length)];
+};
+
+export const quoteGenerator = () => {
+  return quotes[Math.floor(Math.random() * quotes.length)];
 };
