@@ -119,3 +119,32 @@
     stroke: #3fa2f6;
   }
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 30px;
+  border-radius: 2px;
+  scroll-margin: 100px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  height: 10px;
+  border-radius: 2px;
+  scroll-margin: 100px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 2px;
+  scroll-margin: 100px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+  border-radius: 2px;
+}

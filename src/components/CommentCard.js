@@ -1,6 +1,7 @@
 import React from "react";
-import { timeAgo } from "../utils/Helper";
+import { timeAgo, formatCount } from "../utils/Helper";
 import Like from "./Like";
+import { USER_PNG } from "../utils/constant";
 
 const CommentCard = ({ commentInfo }) => {
   return (
@@ -10,6 +11,9 @@ const CommentCard = ({ commentInfo }) => {
           className="rounded-full cursor-pointer"
           src={
             commentInfo.snippet.topLevelComment.snippet.authorProfileImageUrl
+              ? commentInfo.snippet.topLevelComment.snippet
+                  .authorProfileImageUrl
+              : USER_PNG
           }
           alt="profile-img"
         />
@@ -29,7 +33,7 @@ const CommentCard = ({ commentInfo }) => {
         <div className="flex items-center">
           <Like />
           <h1 className="ml-2">
-            {commentInfo.snippet.topLevelComment.snippet.likeCount}
+            {formatCount(commentInfo.snippet.topLevelComment.snippet.likeCount)}
           </h1>
         </div>
       </div>

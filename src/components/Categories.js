@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { YOUTUBE_CATEGORY_LIST as categories } from "../utils/constant";
 
-const Categories = ({ categories }) => {
+const Categories = () => {
   const tabsBoxRef = useRef(null);
   const [activeTab, setActiveTab] = useState("JavaScript");
   const [showLeftIcon, setShowLeftIcon] = useState(false);
@@ -79,7 +80,7 @@ const Categories = ({ categories }) => {
             key={tab}
             className={`cursor-pointer whitespace-nowrap px-5 py-2 rounded-full border ${
               activeTab === tab
-                ? "bg-red-600 text-white border-transparent"
+                ? "bg-black text-white border-transparent"
                 : "bg-gray-100 border-gray-300 hover:bg-gray-200"
             }`}
             onClick={() => setActiveTab(tab)}
