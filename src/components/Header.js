@@ -10,7 +10,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "../utils/searchSlice";
-import SuggestionCard from "./SuggestionCard";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
@@ -35,7 +34,6 @@ const Header = () => {
   };
   const handleSearchClick = async (e) => {
     e.preventDefault();
-    setSearchText(searchText);
     navigate("/search", { state: { info: searchText } });
   };
 
@@ -62,6 +60,7 @@ const Header = () => {
             className="h-14 cursor-pointer mx-2"
             src={YOUTUBE_LOGO_IMG}
             alt="logo"
+            onClick={() => setSearchText("")}
           />
         </Link>
       </div>
@@ -80,7 +79,7 @@ const Header = () => {
             }}
             onBlur={(e) => {
               e.target.style.boxShadow = "none";
-              setShowSuggestions(false);
+              setTimeout(() => setShowSuggestions(false), 200);
             }}
           />
           <button
@@ -104,11 +103,21 @@ const Header = () => {
         {showSuggestions && suggestions.length > 0 && (
           <div className="border rounded-lg py-2 border-gray-100 fixed z-10 bg-white ml-32 w-[33.4rem] my-1 shadow-lg">
             <ul>
-              {suggestions.map((suggestion, index) => (
-                <Link to={"search"}>
-                  <SuggestionCard suggestion={suggestion} key={index} />
-                </Link>
-              ))}
+              {suggestions.map((suggestion, index) => {
+                return (
+                  <li
+                    className="py-2 px-4 text-black font-medium shadow-sm hover:bg-gray-200"
+                    key={index}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setSearchText(suggestion);
+                      navigate("/search", { state: { info: suggestion } });
+                    }}
+                  >
+                    <span>🔍 {suggestion}</span>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}

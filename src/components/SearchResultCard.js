@@ -32,7 +32,7 @@ const SearchResultCard = ({ data }) => {
         alt="tag"
         className="rounded-xl object-fill w-auto"
       />
-      <div className="mx-3">
+      <div className="mx-7">
         <h1 className="font-medium text-2xl">{data?.snippet?.title}</h1>
         <span className="font-medium text-gray-600">
           {formatCount(videoStat?.viewCount)}

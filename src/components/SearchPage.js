@@ -15,11 +15,13 @@ const SearchPage = () => {
     );
 
     const json = await data.json();
+    console.log(json);
+
     setSearchResults(json.items);
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [info]);
   if (searchResults.length === 0) return;
   return (
     <div className="mx-16">

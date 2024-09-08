@@ -8,7 +8,7 @@ export const USER_PNG =
   "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
 
 //Youtube cred
-export const YOUTUBE_API_KEY = "AIzaSyB2xZ8I1mvoPkFKiuvaL2fO0CZS8p5t29o";
+export const YOUTUBE_API_KEY = "AIzaSyCT9TOryY9pm4G2-yPLrF1VxuQG0E_aOmY";
 
 export const YOUTUBE_CATEGORY_LIST = [
   "All",
@@ -311,5 +311,7 @@ export const quotes = [
   "Success usually comes to those who are too busy to be looking for it. - Henry David Thoreau",
   "The way to get started is to quit talking and begin",
 ];
+
+export const YOUTUBE_CATEGORY_API = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoCategoryId=10&maxResults=200&key=${YOUTUBE_API_KEY}&q=`;
 
 export const OFFSET = 10;
