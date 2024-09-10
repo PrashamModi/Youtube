@@ -31,7 +31,7 @@ export const YOUTUBE_CATEGORY_LIST = [
   "Software Engineering",
 ];
 
-export const YOUTUBE_MOST_POPULAR_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=200&regionCode=IN&key=${YOUTUBE_API_KEY}`;
+export const YOUTUBE_MOST_POPULAR_API = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=48&regionCode=IN&key=${YOUTUBE_API_KEY}`;
 
 export const YOUTUBE_COMMENT_API = `https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&maxResults=50&key=${YOUTUBE_API_KEY}&textFormat=plainText`;
 
@@ -316,3 +316,5 @@ export const quotes = [
 export const YOUTUBE_CATEGORY_API = `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&videoCategoryId=10&maxResults=200&key=${YOUTUBE_API_KEY}&q=`;
 
 export const OFFSET = 10;
+
+export const YOUTUBE_CATEGORY_LIST_API = `https://youtube.googleapis.com/youtube/v3/videoCategories?part=snippet&regionCode=IN&key=${YOUTUBE_API_KEY}`;

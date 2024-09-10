@@ -5,6 +5,7 @@ import { YOUTUBE_API_KEY } from "../utils/constant";
 const VideoCard = ({ item }) => {
   const [channelInfo, setChannelInfo] = useState([]);
   const [channelStats, setChannelStats] = useState([]);
+
   const getData = async () => {
     const [data, data2] = await Promise.all([
       fetch(
@@ -19,19 +20,20 @@ const VideoCard = ({ item }) => {
     const json = await data.json();
     const json2 = await data2.json();
     setChannelInfo(json.items);
-    console.log(json2);
-
     setChannelStats(json2?.items[0]?.statistics);
   };
+
   useEffect(() => {
     getData();
   }, []);
-  if (channelInfo.length === 0 || channelStats.length === 0) return;
+
+  if (channelInfo.length === 0 || channelStats.length === 0) return null;
+
   return (
-    <div className="shadow-2xl rounded-xl p-1 cursor-pointer m-3 transform transition-transform duration-75 hover:scale-110 w-96">
-      <div className="flex p-1 items-center justify-center">
+    <div className="w-[20rem] cursor-pointer p-2 m-2 hover:bg-gray-100 rounded-lg transition-transform duration-200 hover:scale-105">
+      <div className="relative">
         <img
-          className="w-full h-48 shadow-lg rounded-xl"
+          className="w-full h-[11.25rem] object-cover rounded-lg"
           src={
             item?.snippet?.thumbnails?.maxres
               ? item?.snippet?.thumbnails?.maxres?.url
@@ -40,37 +42,32 @@ const VideoCard = ({ item }) => {
           alt=""
         />
       </div>
-      <hr className="border-1 border-gray-400 m-3 w-auto" />
-      <div className="ml-4">
-        <div className="flex items-start">
-          <img
-            className="w-20 h-8 rounded-full"
-            alt="channel IMG"
-            src={channelInfo[0]?.snippet?.thumbnails?.default?.url}
-          />
-          <h1 className="font-semibold text-base mx-2">
+      <div className="flex mt-3">
+        <img
+          className="w-9 h-9 rounded-full mr-3"
+          alt="channel IMG"
+          src={channelInfo[0]?.snippet?.thumbnails?.default?.url}
+        />
+        <div className="flex flex-col">
+          <h1 className="text-sm font-semibold text-black line-clamp-2">
             {item?.snippet?.localized
               ? item?.snippet?.localized?.title
               : item?.snippet?.title}
           </h1>
-        </div>
-        <div className="mx-12">
-          <h1 className="font-medium text-sm text-gray-500">
+          <h2 className="text-xs text-gray-500 mt-1">
             {item?.snippet?.channelTitle}
-          </h1>
-          <div className="flex ">
-            <h3 className="inline font-medium text-sm text-gray-500">
+          </h2>
+          <div className="flex items-center text-xs text-gray-500 mt-1">
+            <span>
               {formatCount(
                 item?.statistics
                   ? item?.statistics?.viewCount
                   : channelStats?.viewCount
               )}{" "}
               views
-            </h3>
-            <span className="mx-2">•</span>
-            <h4 className="font-medium text-sm text-gray-500">
-              {timeAgo(item?.snippet?.publishedAt)}
-            </h4>
+            </span>
+            <span className="mx-1">•</span>
+            <span>{timeAgo(item?.snippet?.publishedAt)}</span>
           </div>
         </div>
       </div>

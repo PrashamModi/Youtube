@@ -5,7 +5,7 @@ import { USER_PNG } from "../utils/constant";
 
 const CommentCard = ({ commentInfo }) => {
   return (
-    <div className="flex m-2 p-2 mb-3 shadow-lg rounded-2xl h-2/5 mt-8">
+    <div className="flex m-2 p-2 mb-3 rounded-2xl h-2/5">
       <div>
         <img
           className="rounded-full cursor-pointer"
@@ -20,14 +20,14 @@ const CommentCard = ({ commentInfo }) => {
       </div>
       <div className="ml-4">
         <div className="flex">
-          <h1 className="font-bold cursor-pointer">
+          <h1 className="font-medium text-sm cursor-pointer">
             {commentInfo.snippet.topLevelComment.snippet.authorDisplayName}
           </h1>
           <h2 className="ml-3 font-light">
             {timeAgo(commentInfo.snippet.topLevelComment.snippet.updatedAt)}
           </h2>
         </div>
-        <h1 className="font-semibold">
+        <h1 className="font-normal text-black">
           {commentInfo.snippet.topLevelComment.snippet.textOriginal}
         </h1>
         <div className="flex items-center">

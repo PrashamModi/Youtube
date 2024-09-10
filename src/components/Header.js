@@ -52,7 +52,7 @@ const Header = () => {
     };
   }, [searchText]);
   return (
-    <div className="grid grid-flow-col p-5 m-1 shadow-lg h-16 content-center sticky top-0 z-30 bg-slate-50">
+    <div className="grid grid-flow-col bg-white p-5 m-1 h-16 content-center sticky top-0 z-50">
       {/* This is the left portion */}
       <div className="flex items-center col-span-1">
         <Hamburger />
@@ -72,7 +72,7 @@ const Header = () => {
         {/* This is middle top */}
         <div className="flex items-center w-auto">
           <input
-            className="w-1/2 ml-32 rounded-l-3xl border p-3 active:border-blue-900 focus:outline-none focus:border-blue-500 pl-6 font-sans"
+            className="w-1/2 ml-32 h-12 rounded-l-3xl border p-3 active:border-blue-900 focus:outline-none focus:border-blue-500 pl-6 font-sans"
             placeholder="Search"
             type="text"
             value={searchText}
@@ -87,14 +87,18 @@ const Header = () => {
             }}
           />
           <button
-            className="p-3 w-14 border rounded-r-3xl bg-slate-400"
+            className="w-16 h-12 border rounded-r-3xl bg-slate-100 items-center justify-center"
             onClick={handleSearchClick}
           >
-            🔍
+            <img
+              src="https://www.svgrepo.com/show/7109/search.svg"
+              alt=""
+              className="h-8 w-6 items-center ml-5"
+            />
           </button>
           <div className="relative group ml-5">
             <img
-              className="h-12 p-3 rounded-full bg-gray-400 shadow-lg cursor-pointer"
+              className="h-12 p-3 rounded-full bg-gray-100 shadow-lg cursor-pointer"
               src={MIC_IMAGE}
               alt="mic"
             />

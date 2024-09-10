@@ -24,8 +24,10 @@ const SearchPage = () => {
   }, [info]);
   if (searchResults.length === 0) return;
   return (
-    <div className="mx-16">
-      <Categories />
+    <div className="mx-16 overflow-x-hidden">
+      <div className="w-screen ml-4">
+        <Categories />
+      </div>
       {searchResults?.map((video) =>
         video?.id?.videoId === undefined ? (
           ""

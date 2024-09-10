@@ -34,7 +34,9 @@ const ChannelDetails = ({ item, id }) => {
   return (
     <>
       <div className="mt-4">
-        <h1 className="font-bold mt-2">{item?.snippet?.localized?.title}</h1>
+        <h1 className="font-bold text-xl mt-2">
+          {item?.snippet?.localized?.title}
+        </h1>
         <div className="flex items-center mt-3 justify-between">
           <div className="flex items-center">
             <img
@@ -43,7 +45,9 @@ const ChannelDetails = ({ item, id }) => {
               src={channelInfo[0]?.snippet?.thumbnails?.default?.url}
             />
             <div className="mx-3">
-              <h2 className="font-bold">{item?.snippet?.channelTitle}</h2>
+              <h2 className="font-medium text-lg">
+                {item?.snippet?.channelTitle}
+              </h2>
               <h1 className="font-medium text-gray-500">
                 {formatCount(channelStats[0].statistics.subscriberCount) +
                   " subscribers"}

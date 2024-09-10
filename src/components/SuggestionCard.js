@@ -5,7 +5,6 @@ const SuggestionCard = ({ suggestion }) => {
   const navigate = useNavigate();
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("Clickeddddd");
     navigate("search");
   };
   return (

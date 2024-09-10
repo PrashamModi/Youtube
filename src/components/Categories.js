@@ -1,111 +1,140 @@
-import React, { useEffect, useRef, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
-import {
-  YOUTUBE_CATEGORY_LIST as categories,
-  YOUTUBE_CATEGORY_API,
-} from "../utils/constant";
+import React, { useEffect, useState, useRef } from "react";
+import { YOUTUBE_CATEGORY_LIST_API } from "../utils/constant";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../utils/categorySlice";
 
 const Categories = () => {
-  const tabsBoxRef = useRef(null);
-  const [activeTab, setActiveTab] = useState("JavaScript");
-  const [showLeftIcon, setShowLeftIcon] = useState(false);
-  const [showRightIcon, setShowRightIcon] = useState(true);
+  const [categoryList, setCategoryList] = useState([]);
+  const [activeTab, setActiveTab] = useState("All");
+  const tabsRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
   const dispatch = useDispatch();
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  let isDragging = false;
+
+  const getData = async () => {
+    const data = await fetch(YOUTUBE_CATEGORY_LIST_API);
+    const json = await data.json();
+    setCategoryList(json.items);
+  };
 
   useEffect(() => {
-    const tabsBox = tabsBoxRef.current;
-    const handleIcons = () => {
-      const maxScrollLeft = tabsBox.scrollWidth - tabsBox.clientWidth;
-      setShowLeftIcon(tabsBox.scrollLeft > 0);
-      setShowRightIcon(tabsBox.scrollLeft < maxScrollLeft - 1);
-    };
-
-    tabsBox.addEventListener("scroll", handleIcons);
-    handleIcons();
-
-    return () => {
-      tabsBox.removeEventListener("scroll", handleIcons);
-    };
+    getData();
   }, []);
 
-  const handleMouseDown = (e) => {
-    isDragging.current = true;
-    startX.current = e.pageX - tabsBoxRef.current.offsetLeft;
-    scrollLeft.current = tabsBoxRef.current.scrollLeft;
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = tabsRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
+    };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging.current) return;
-    e.preventDefault();
-    const x = e.pageX - tabsBoxRef.current.offsetLeft;
-    const walk = (x - startX.current) * 2; // Scroll-fast
-    tabsBoxRef.current.scrollLeft = scrollLeft.current - walk;
-  };
-
-  const handleMouseUp = () => {
-    isDragging.current = false;
-  };
-
-  const scroll = (direction) => {
-    const { current } = tabsBoxRef;
-    const scrollAmount = 340;
-    if (direction === "left") {
-      current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    } else {
-      current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    const tabs = tabsRef.current;
+    if (tabs) {
+      tabs.addEventListener("scroll", handleScroll);
+      return () => tabs.removeEventListener("scroll", handleScroll);
     }
+  }, []);
+
+  const scrollRight = () => {
+    tabsRef.current.scrollLeft += 200;
   };
+
+  const scrollLeft = () => {
+    tabsRef.current.scrollLeft -= 200;
+  };
+
+  const startDrag = (e) => {
+    isDragging = true;
+  };
+
+  const handleDragging = (e) => {
+    if (!isDragging) return;
+    tabsRef.current.scrollLeft -= e.movementX;
+  };
+
+  const stopDrag = () => {
+    isDragging = false;
+  };
+
+  if (categoryList.length === 0) return null;
+
   return (
-    <div className="relative overflow-hidden max-w-[78rem] bg-white rounded-md p-5 left-0 mr-auto">
-      {showLeftIcon && (
-        <div className="absolute top-0 left-0 h-full flex items-center bg-gradient-to-r from-white via-white to-transparent">
+    <div className="relative w-auto mx-auto py-3 text-black rounded-md overflow-hidden top-0">
+      {/* Left Arrow */}
+      {canScrollLeft && (
+        <div className="absolute inset-y-0 left-0 flex items-center bg-gradient-to-r from-white to-transparent z-50 w-20 pointer-events-none">
           <button
-            className="w-12 h-12 flex items-center justify-center ml-3 hover:bg-gray-200 rounded-full mr-16"
-            onClick={() => scroll("left")}
+            onClick={scrollLeft}
+            className="pointer-events-auto p-2 rounded-full bg-white hover:bg-gray-300"
           >
-            <FontAwesomeIcon icon={faAngleLeft} size="lg" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
           </button>
         </div>
       )}
+
+      {/* Category List */}
       <ul
-        className="flex gap-3 overflow-x-auto scrollbar-hide"
-        ref={tabsBoxRef}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseUp}
-        onMouseUp={handleMouseUp}
+        ref={tabsRef}
+        className="flex gap-4 overflow-x-scroll scrollbar-hide px-4"
+        onMouseDown={startDrag}
+        onMouseMove={handleDragging}
+        onMouseUp={stopDrag}
+        onMouseLeave={stopDrag}
       >
-        {categories.map((tab) => (
-          <li
-            key={tab}
-            className={`cursor-pointer whitespace-nowrap px-5 py-2 rounded-full border ${
-              activeTab === tab
-                ? "bg-black text-white border-transparent"
-                : "bg-gray-100 border-gray-300 hover:bg-gray-200"
-            }`}
-            onClick={() => {
-              setActiveTab(tab);
-              dispatch(setCategory(tab));
-              // getdata(tab);
-            }}
-          >
-            {tab}
+        {categoryList.map((category, index) => (
+          <li key={index}>
+            <button
+              className={`${
+                activeTab === category.snippet.title
+                  ? "bg-black text-white"
+                  : "bg-gray-100 text-black hover:bg-gray-200"
+              } py-2 px-4 font-medium rounded-md text-sm whitespace-nowrap`}
+              onClick={() => {
+                setActiveTab(category.snippet.title);
+                dispatch(setCategory(category.snippet.title));
+              }}
+            >
+              {category.snippet.title}
+            </button>
           </li>
         ))}
       </ul>
-      {showRightIcon && (
-        <div className="absolute top-0 right-0 h-full flex items-center bg-gradient-to-l from-white via-white to-transparent">
+
+      {/* Right Arrow */}
+      {canScrollRight && (
+        <div className="absolute inset-y-0 right-2 flex items-center bg-gradient-to-r from-transparent to-white w-16 z-50 pointer-events-none">
           <button
-            className="w-12 h-12 flex items-center justify-center mr-3 hover:bg-gray-200 rounded-full ml-16"
-            onClick={() => scroll("right")}
+            onClick={scrollRight}
+            className="pointer-events-auto p-2 rounded-full bg-white hover:bg-gray-300"
           >
-            <FontAwesomeIcon icon={faAngleRight} size="lg" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
           </button>
         </div>
       )}

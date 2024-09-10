@@ -18,13 +18,11 @@ const VideoContainer = () => {
   if (videos.length === 0) return;
 
   return (
-    <div className="ml-2 flex flex-wrap justify-evenly">
+    <div className="flex flex-wrap justify-around">
       {videos.map((video) => (
-        <div className="flex box basis-1/3 items-center justify-center">
-          <Link to={"/watch?v=" + video.id} key={video.id} state={video}>
-            <VideoCard item={video} />
-          </Link>
-        </div>
+        <Link to={"/watch?v=" + video.id} key={video.id} state={video}>
+          <VideoCard item={video} />
+        </Link>
       ))}
     </div>
   );

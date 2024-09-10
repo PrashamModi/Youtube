@@ -2,7 +2,7 @@ import React from "react";
 
 const WatchVideo = ({ id }) => {
   return (
-    <div className="shadow-2xl">
+    <div className="">
       <iframe
         width="900"
         height="450"
