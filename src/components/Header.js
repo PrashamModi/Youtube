@@ -10,6 +10,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { cacheResults } from "../utils/searchSlice";
+import { setCategory } from "../utils/categorySlice";
 
 const Header = () => {
   const [searchText, setSearchText] = useState("");
@@ -60,7 +61,10 @@ const Header = () => {
             className="h-14 cursor-pointer mx-2"
             src={YOUTUBE_LOGO_IMG}
             alt="logo"
-            onClick={() => setSearchText("")}
+            onClick={() => {
+              setSearchText("");
+              dispath(setCategory(""));
+            }}
           />
         </Link>
       </div>
