@@ -8,8 +8,8 @@ export const USER_PNG =
   "https://w7.pngwing.com/pngs/178/595/png-transparent-user-profile-computer-icons-login-user-avatars-thumbnail.png";
 
 //Youtube cred
-// export const YOUTUBE_API_KEY = "AIzaSyCT9TOryY9pm4G2-yPLrF1VxuQG0E_aOmY";
-export const YOUTUBE_API_KEY = "AIzaSyB2xZ8I1mvoPkFKiuvaL2fO0CZS8p5t29o";
+export const YOUTUBE_API_KEY = "AIzaSyCT9TOryY9pm4G2-yPLrF1VxuQG0E_aOmY";
+// export const YOUTUBE_API_KEY = "AIzaSyB2xZ8I1mvoPkFKiuvaL2fO0CZS8p5t29o";
 
 export const YOUTUBE_CATEGORY_LIST = [
   "All",
@@ -36,7 +36,7 @@ export const YOUTUBE_MOST_POPULAR_API = `https://youtube.googleapis.com/youtube/
 export const YOUTUBE_COMMENT_API = `https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&maxResults=50&key=${YOUTUBE_API_KEY}&textFormat=plainText`;
 
 export const YOUTUBE_SEARCH_SUGGESTION =
-  "https://cors-anywhere.herokuapp.com/suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://proxy-81z3.onrender.com/api/search?queryText=";
 
 export const nameList = [
   "Time",
