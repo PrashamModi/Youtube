@@ -25,7 +25,7 @@ const SearchResultCard = ({ data }) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [channelInfo]);
 
   if (videoStat?.length === 0 || channelInfo.length === 0) return null;
 

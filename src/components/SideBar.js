@@ -25,20 +25,6 @@ const SideBar = () => {
         <li>Your Videos</li>
         <li>Watch Later</li>
         <hr className="border-1 border-gray-400 m-3 w-auto" />
-        <h1 className="font-bold">Subscriptions</h1>
-        <li>Samay Raina</li>
-        <li>Samay Raina</li>
-        <li>Samay Raina</li>
-        <hr className="border-1 border-gray-400 m-3 w-auto" />
-        <h1 className="font-bold">Subscriptions</h1>
-        <li>Samay Raina</li>
-        <li>Samay Raina</li>
-        <li>Samay Raina</li>
-        <hr className="border-1 border-gray-400 m-3 w-auto" />
-        <h1 className="font-bold">Subscriptions</h1>
-        <li>Samay Raina</li>
-        <li>Samay Raina</li>
-        <li>Samay Raina</li>
       </ul>
     </div>
   );

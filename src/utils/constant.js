@@ -36,7 +36,7 @@ export const YOUTUBE_MOST_POPULAR_API = `https://youtube.googleapis.com/youtube/
 export const YOUTUBE_COMMENT_API = `https://youtube.googleapis.com/youtube/v3/comments?part=snippet&parentId=UgzDE2tasfmrYLyNkGt4AaABAg&maxResults=50&key=${YOUTUBE_API_KEY}&textFormat=plainText`;
 
 export const YOUTUBE_SEARCH_SUGGESTION =
-  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://cors-anywhere.herokuapp.com/suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const nameList = [
   "Time",

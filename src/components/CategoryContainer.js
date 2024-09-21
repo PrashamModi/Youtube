@@ -15,7 +15,7 @@ const CategoryContainer = ({ tab }) => {
   }, [tab]);
   if (videos.length === 0) return;
   return (
-    <div className="ml-2 flex flex-wrap">
+    <div className="flex flex-wrap justify-around">
       {videos.map((video) => (
         <Link
           to={"/watch?v=" + video.id.videoId}
